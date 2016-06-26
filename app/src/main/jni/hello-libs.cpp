@@ -20,6 +20,10 @@
 #include <android/log.h>
 #include <gmath.h>
 #include <gperf.h>
+#include <boost/chrono/duration.hpp>
+#include <boost/chrono/round.hpp>
+#include <boost/chrono/ceil.hpp>
+#include <boost/chrono/floor.hpp>
 
 #define LOGI(...) \
   ((void)__android_log_print(ANDROID_LOG_INFO, "hell-libs::", __VA_ARGS__))
@@ -41,6 +45,11 @@ Java_com_example_hellolibs_MainActivity_stringFromJNI(JNIEnv *env, jobject thiz)
         (void) val;  // to silence compiler warning
     }
     ticks = GetTicks() - ticks;
+
+    boost::chrono::seconds value1(10);
+    boost::chrono::seconds value2(20);
+    boost::chrono::seconds sum;
+    sum = value1 + value2;
 
     LOGI("calculation time: %" PRIu64, ticks);
 

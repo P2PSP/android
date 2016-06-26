@@ -27,26 +27,217 @@ model {
                 }
             }
 
-            boost {
-                headers.srcDir "${lib_distribution_root}/boost/include"
+            libboost_atomic {
+                headers.srcDir "${lib_distribution_root}/boost"
                 binaries.withType(StaticLibraryBinary) {
                     staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_atomic-gcc-mt-1_53.a")
                 }
             }
 
             libboost_chrono {
-                headers.srcDir "${lib_distribution_root}/boost/include"
+                headers.srcDir "${lib_distribution_root}/boost"
                 binaries.withType(StaticLibraryBinary) {
                     staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_chrono-gcc-mt-1_53.a")
                 }
             }
 
             libboost_context {
-                headers.srcDir "${lib_distribution_root}/boost/include"
+                headers.srcDir "${lib_distribution_root}/boost"
                 binaries.withType(StaticLibraryBinary) {
                     staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_context-gcc-mt-1_53.a")
                 }
             }
+
+
+            libboost_date_time {
+                headers.srcDir "${lib_distribution_root}/boost"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_date_time-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_exception{
+                headers.srcDir "${lib_distribution_root}/boost"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_exception-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_filesystem {
+                headers.srcDir "${lib_distribution_root}/boost"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_filesystem-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_graph {
+                headers.srcDir "${lib_distribution_root}/boost"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_graph-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_chrono {
+                headers.srcDir "${lib_distribution_root}/boost"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_chrono-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_iostreams {
+                headers.srcDir "${lib_distribution_root}/boost"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_iostreams-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_math_c99f {
+                headers.srcDir "${lib_distribution_root}/boost"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_math_c99f-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_math_c99 {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_math_c99-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_math_c99l {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_math_c99l-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_math_tr1f {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_math_tr1f-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_math_tr1 {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_math_tr1-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_math_tr1l {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_math_tr1l-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_prg_exec_monitor {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_prg_exec_monitor-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_program_options{
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_program_options-gcc-mt-1_53.a")
+                }
+            }
+
+
+            libboost_random {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_random-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_regex {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_regex-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_serialization {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_serialization-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_signals {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_signals-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_system {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_system-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_test_exec_monitor{
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_test_exec_monitor-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_thread {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_thread-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_timer {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_timer-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_unit_test_framework{
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_unit_test_framework-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_wave {
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_wave-gcc-mt-1_53.a")
+                }
+            }
+
+            libboost_wserialization{
+                headers.srcDir "${lib_distribution_root}/boost/"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${lib_distribution_root}/boost/lib/${targetPlatform.getName()}/libboost_wserialization-gcc-mt-1_53.a")
+                }
+            }
+
         }
     }
     android {
@@ -67,8 +258,6 @@ model {
             stl = 'gnustl_static'
             cppFlags.addAll(['-std=c++11'])
             ldLibs.addAll(['android', 'log'])
-            // build a default combined apk including all ABIs.
-            //abiFilters.addAll(['x86'])
             abiFilters.addAll(['armeabi', 'armeabi-v7a', 'x86'])
         }
         sources {
@@ -78,9 +267,34 @@ model {
                         library 'gmath' linkage 'shared'
                         // if gperf were *.a, change shared --> static
                         library 'gperf' linkage 'shared'
-                        library 'boost' linkage 'static'
+                        //library 'boost' linkage 'static'
+                        library 'libboost_atomic' linkage 'static'
                         library 'libboost_chrono' linkage 'static'
                         library 'libboost_context' linkage 'static'
+                        library 'libboost_date_time' linkage 'static'
+                        library 'libboost_exception' linkage 'static'
+                        library 'libboost_filesystem' linkage 'static'
+                        library 'libboost_graph' linkage 'static'
+                        library 'libboost_iostreams' linkage 'static'
+                        library 'libboost_math_c99f' linkage 'static'
+                        library 'libboost_math_c99l' linkage 'static'
+                        library 'libboost_math_c99' linkage 'static'
+                        library 'libboost_math_tr1f' linkage 'static'
+                        library 'libboost_math_tr1' linkage 'static'
+                        library 'libboost_math_tr1l' linkage 'static'
+                        library 'libboost_prg_exec_monitor' linkage 'static'
+                        library 'libboost_program_options' linkage 'static'
+                        library 'libboost_random' linkage 'static'
+                        library 'libboost_regex' linkage 'static'
+                        library 'libboost_serialization' linkage 'static'
+                        library 'libboost_signals' linkage 'static'
+                        library 'libboost_system' linkage 'static'
+                        library 'libboost_test_exec_monitor' linkage 'static'
+                        library 'libboost_thread' linkage 'static'
+                        library 'libboost_wave' linkage 'static'
+                        library 'libboost_timer' linkage 'static'
+                        library 'libboost_unit_test_framework' linkage 'static'
+                        library 'libboost_wserialization' linkage 'static'
                     }
                 }
                 jniLibs {
@@ -122,6 +336,5 @@ tasks.whenTaskAdded { task ->
     if (task.name.contains('compile')) {
         task.dependsOn ':gmath:distributeLib'
         task.dependsOn ':gperf:distributeLib'
-        //task.dependsOn ':boost:distributeLib'
     }
 }
