@@ -10,16 +10,16 @@
 
 #include "trace.h"
 
-#include <boost/date_time/posix_time/posix_time_types.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/sinks/sync_frontend.hpp>
-#include <boost/log/sinks/text_file_backend.hpp>
-#include <boost/log/sources/record_ostream.hpp>
-#include <boost/log/sources/severity_logger.hpp>
-#include <boost/log/support/date_time.hpp>
-#include <boost/log/utility/setup/common_attributes.hpp>
-#include <boost/log/utility/setup/console.hpp>
-#include <boost/log/utility/setup/file.hpp>
+#include <../../boost/include/boost/date_time/posix_time/posix_time_types.hpp>
+#include <../../boost/include/boost/log/expressions.hpp>
+#include <../../boost/include/boost/log/sinks/sync_frontend.hpp>
+#include <../../boost/include/boost/log/sinks/text_file_backend.hpp>
+#include <../../boost/include/boost/log/sources/record_ostream.hpp>
+#include <../../boost/include/boost/log/sources/severity_logger.hpp>
+#include <../../boost/include/boost/log/support/date_time.hpp>
+#include <../../boost/include/boost/log/utility/setup/common_attributes.hpp>
+#include <../../boost/include/boost/log/utility/setup/console.hpp>
+#include <../../boost/include/boost/log/utility/setup/file.hpp>
 
 #ifndef TRACE_THRESHOLD
 

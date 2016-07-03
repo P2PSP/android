@@ -15,9 +15,9 @@
 
 #include <arpa/inet.h>
 #include <stdio.h>
-#include <boost/array.hpp>
-#include <boost/asio.hpp>
-#include <boost/thread/thread.hpp>
+#include <../../boost/include/boost/array.hpp>
+#include <../../boost/include/boost/asio.hpp>
+#include <../../boost/include/boost/thread/thread.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>

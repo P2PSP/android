@@ -15,8 +15,8 @@
 
 #include <stdio.h>
 #include <string>
-#include <boost/asio.hpp>
-#include <boost/unordered_map.hpp>
+#include <../../boost/include/boost/asio.hpp>
+#include <../../boost/include/boost/unordered_map.hpp>
 #include "../util/trace.h"
 #include "splitter_ims.h"
 #include "common.h"

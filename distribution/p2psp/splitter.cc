@@ -14,8 +14,8 @@
 #include "core/splitter_acs.h"
 #include "core/splitter_lrs.h"
 #include "core/splitter_strpe.h"
-#include <boost/program_options/parsers.hpp>
-#include <boost/program_options/variables_map.hpp>
+#include <../../boost/include/boost/program_options/parsers.hpp>
+#include <../../boost/include/boost/program_options/variables_map.hpp>
 #include <signal.h>
 #include "util/trace.h"
 
