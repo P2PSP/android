@@ -5,27 +5,6 @@ def lib_distribution_root = '../distribution'
 model {
     repositories {
         libs(PrebuiltLibraries) {
-            // Configure one pre-built lib: shared
-            gmath {
-                // Inform Android Studio where header file dir for this lib
-                headers.srcDir "${lib_distribution_root}/gmath/include"
-                // Inform Android Studio where lib is -- each ABI should have a lib file
-                binaries.withType(SharedLibraryBinary) {
-                    sharedLibraryFile = file("${lib_distribution_root}/gmath/lib/${targetPlatform.getName()}/libgmath.so")
-                }
-            }
-            // Configure another pre-built lib: shared;[change to static after Studio supports]
-            // static lib generation. USING static lib is supported NOW, for that case,
-            // simple change:
-            //  SharedLibaryBinary --> StaticLibraryBinary
-            //  sharedLibraryFile  --> staticLibraryFile
-            //  *.so --> *.a
-            gperf {
-                headers.srcDir "${lib_distribution_root}/gperf/include"
-                binaries.withType(SharedLibraryBinary) {
-                    sharedLibraryFile = file("${lib_distribution_root}/gperf/lib/${targetPlatform.getName()}/libgperf.so")
-                }
-            }
 
             libboost_atomic {
                 headers.srcDir "${lib_distribution_root}/boost/include"
@@ -306,8 +285,6 @@ model {
                     // so the same file is used by compiler at host, also packed
                     // into APk to be used at Target (phone/tablet)
                     source {
-                        srcDir "${lib_distribution_root}/gmath/lib"
-                        srcDir "${lib_distribution_root}/gperf/lib"
                         srcDir "${lib_distribution_root}/boost/lib"
                     }
                 }
