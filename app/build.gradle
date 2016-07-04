@@ -243,10 +243,6 @@ model {
             main {
                 jni {
                     dependencies {
-                        library 'gmath' linkage 'shared'
-                        // if gperf were *.a, change shared --> static
-                        library 'gperf' linkage 'shared'
-                        //library 'boost' linkage 'static'
                         library 'libboost_atomic' linkage 'static'
                         library 'libboost_chrono' linkage 'static'
                         library 'libboost_context' linkage 'static'
@@ -309,9 +305,4 @@ dependencies {
 //  Make sure the libs are available when begin compiling application project
 //  This could be ignored because in real scenario, the pre-built libs are
 //  already given to us before creating application.
-tasks.whenTaskAdded { task ->
-    if (task.name.contains('compile')) {
-        task.dependsOn ':gmath:distributeLib'
-        task.dependsOn ':gperf:distributeLib'
-    }
-}
+
