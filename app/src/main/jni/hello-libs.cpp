@@ -18,8 +18,6 @@
 #include <jni.h>
 #include <inttypes.h>
 #include <android/log.h>
-#include <gmath.h>
-#include <gperf.h>
 #include <boost/chrono/duration.hpp>
 #include <boost/chrono/round.hpp>
 #include <boost/chrono/ceil.hpp>
@@ -44,25 +42,13 @@ extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_hellolibs_MainActivity_stringFromJNI(JNIEnv *env, jobject thiz) {
     // Just for simplicity, we do this right away; correct way would do it in
     // another thread...
-    auto ticks = GetTicks();
-
-    for (auto exp = 0; exp < 32; ++exp) {
-        volatile unsigned val = gpower(exp);
-        (void) val;  // to silence compiler warning
-    }
-    ticks = GetTicks() - ticks;
 
     boost::chrono::seconds value1(10);
     boost::chrono::seconds value2(20);
     boost::chrono::seconds sum;
     sum = value1 + value2;
 
-    LOGI("calculation time: %" PRIu64, ticks);
 
-    boost::chrono::seconds value1(10);
-    boost::chrono::seconds value2(20);
-    boost::chrono::seconds sum;
-    sum = value1 + value2;
 
     return env->NewStringUTF("Hello from JNI!");
 }
