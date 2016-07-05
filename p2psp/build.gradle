@@ -19,7 +19,8 @@ model{
             cppFlags.add('-std=c++11')
             cppFlags.add('-frtti')
             cppFlags.add('-fexceptions')
-            cppFlags.add("-I${lib_distribution_root}/boost/include".toString())
+            //cppFlags.add("-I${lib_distribution_root}/boost/include".toString())
+            cppFlags.add("-I${file("src/main/jni/inc")}".toString())
             abiFilters.addAll(['armeabi', 'armeabi-v7a', 'x86'])
         }
     }
