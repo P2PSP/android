@@ -1,0 +1,29 @@
+apply plugin: 'com.android.model.native'
+def lib_distribution_root = '../distribution'
+model{
+    android {
+        compileSdkVersion =  23
+        buildToolsVersion = "23.0.3"
+
+        defaultConfig {
+            minSdkVersion.apiLevel = 14
+            targetSdkVersion.apiLevel = 23
+            versionCode = 1
+            versionName = "1.0"
+        }
+        ndk{
+            moduleName = 'p2psp'
+            stl = "stlport_static"
+            ldLibs.addAll(['android', 'log'])
+            toolchain = "clang"
+            cppFlags.add('-std=c++11')
+            cppFlags.add('-frtti')
+            cppFlags.add('-fexceptions')
+            cppFlags.add("-I${lib_distribution_root}/boost/include".toString())
+            abiFilters.addAll(['armeabi', 'armeabi-v7a', 'x86'])
+        }
+    }
+}
+
+
+

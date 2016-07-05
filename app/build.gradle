@@ -272,18 +272,7 @@ model {
                         library 'libboost_wserialization' linkage 'static'
                     }
                 }
-                jniLibs {
-                    // for shared lib, lib need to be pushed to the target too
-                    // Once libs are copied into app/src/main/jniLibs directory,
-                    // Android Studio will pack them into APK's lib/ directory
-                    // Here we like to avoid another duplication by pointing
-                    // to the files that containing our libs' distribution location
-                    // so the same file is used by compiler at host, also packed
-                    // into APk to be used at Target (phone/tablet)
-                    source {
-                        srcDir "${lib_distribution_root}/boost/lib"
-                    }
-                }
+
             }
         }
         buildTypes {
