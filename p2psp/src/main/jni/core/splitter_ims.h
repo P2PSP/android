@@ -7,7 +7,7 @@
 //  Copyright (C) 2016, the P2PSP team.
 //  http://www.p2psp.org
 //
-//  IMS: IP Multicast Set of rules.
+//  IMS: IP Multicast Set of rules.Boost header files for compilation support.
 //
 
 #ifndef P2PSP_CORE_SPLITTER_IMS_H_
@@ -15,9 +15,9 @@
 
 #include <arpa/inet.h>
 #include <stdio.h>
-#include <../boost/array.hpp>
-#include <../boost/asio.hpp>
-#include <../boost/thread/thread.hpp>
+#include <boost/array.hpp>
+#include <boost/asio.hpp>
+#include <boost/thread/thread.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>

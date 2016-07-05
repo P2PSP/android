@@ -14,10 +14,10 @@
 #define P2PSP_CORE_PEER_IMS_H
 
 #include <arpa/inet.h>
-#include <../boost/array.hpp>
-#include <../boost/asio.hpp>
-#include <../boost/date_time/posix_time/posix_time.hpp>
-#include <../boost/thread/thread.hpp>
+#include <boost/array.hpp>
+#include <boost/asio.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/thread/thread.hpp>
 #include <ctime>
 #include <string>
 #include <tuple>
