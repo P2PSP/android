@@ -69,7 +69,7 @@ namespace p2psp
 
 #ifndef TRACE_SILENT_MODE
 
-#define LOG(a)      \
+/*#define LOG(a)      \
   { BOOST_LOG_SEV(p2psp::TraceSystem::logger(), boost::log::trivial::info) \
     << a; }
 
@@ -86,7 +86,7 @@ namespace p2psp
   { BOOST_LOG_SEV(p2psp::TraceSystem::logger(), boost::log::trivial::trace)  \
     << _SET_COLOR(_YELLOW) << __FILE__ << ":" << __LINE__ << ": TRACE: " \
     << a << _RESET_COLOR(); }
-    
+*/
 #else
 
 #define LOG(a)      {}

@@ -11,6 +11,13 @@
 //
 
 #include "peer_ims.h"
+#include <android/log.h>
+#define  LOG_TAG    "someTag"
+
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  LOGW(...)  __android_log_print(ANDROID_LOG_WARN,LOG_TAG,__VA_ARGS__)
+#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 
 namespace p2psp {
 
@@ -68,14 +75,14 @@ void PeerIMS::WaitForThePlayer() {
   acceptor_.bind(endpoint);
   acceptor_.listen();
 
-  TRACE("Waiting for the player at (" << endpoint.address().to_string() << ","
+  /*TRACE("Waiting for the player at (" << endpoint.address().to_string() << ","
                                       << std::to_string(endpoint.port())
-                                      << ")");
+                                      << ")");*/
   acceptor_.accept(player_socket_);
 
-  TRACE("The player is ("
+  /*TRACE("The player is ("
         << player_socket_.remote_endpoint().address().to_string() << ","
-        << std::to_string(player_socket_.remote_endpoint().port()) << ")");
+        << std::to_string(player_socket_.remote_endpoint().port()) << ")");*/
 }
 
 void PeerIMS::ConnectToTheSplitter() throw(boost::system::system_error) {
@@ -88,7 +95,7 @@ void PeerIMS::ConnectToTheSplitter() throw(boost::system::system_error) {
 
   ip::tcp::endpoint tcp_endpoint;
 
-  TRACE("use_localhost = " << std::string((use_localhost_ ? "True" : "False")));
+  //TRACE("use_localhost = " << std::string((use_localhost_ ? "True" : "False")));
   if (use_localhost_) {
     my_ip = "0.0.0.0";
   } else {
@@ -96,7 +103,7 @@ void PeerIMS::ConnectToTheSplitter() throw(boost::system::system_error) {
     try {
       s.connect(splitter_);
     } catch (boost::system::system_error e) {
-      TRACE(e.what());
+      //TRACE(e.what());
     }
 
     my_ip = s.local_endpoint().address().to_string();
@@ -105,11 +112,11 @@ void PeerIMS::ConnectToTheSplitter() throw(boost::system::system_error) {
 
   splitter_socket_.open(splitter_tcp_endpoint.protocol());
 
-  TRACE("Connecting to the splitter at ("
+  /*TRACE("Connecting to the splitter at ("
         << splitter_tcp_endpoint.address().to_string() << ","
-        << std::to_string(splitter_tcp_endpoint.port()) << ") from " << my_ip);
+        << std::to_string(splitter_tcp_endpoint.port()) << ") from " << my_ip);*/
   if (port_ != 0) {
-    TRACE("I'm using port" << std::to_string(port_));
+    /*TRACE("I'm using port" << std::to_string(port_));*/
     tcp_endpoint = ip::tcp::endpoint(ip::address::from_string(my_ip), port_);
     splitter_socket_.set_option(ip::udp::socket::reuse_address(true));
   } else {
@@ -121,9 +128,9 @@ void PeerIMS::ConnectToTheSplitter() throw(boost::system::system_error) {
   // Should throw an exception
   splitter_socket_.connect(splitter_tcp_endpoint);
 
-  TRACE("Connected to the splitter at ("
+  /*TRACE("Connected to the splitter at ("
         << splitter_tcp_endpoint.address().to_string() << ","
-        << std::to_string(splitter_tcp_endpoint.port()) << ")");
+        << std::to_string(splitter_tcp_endpoint.port()) << ")");*/
 }
 
 void PeerIMS::DisconnectFromTheSplitter() { splitter_socket_.close(); }
@@ -138,8 +145,8 @@ void PeerIMS::ReceiveTheMcasteEndpoint() {
   mcast_addr_ = ip::address::from_string(inet_ntoa(ip_raw));
   mcast_port_ = ntohs(*(short *)(raw_data + 4));
 
-  TRACE("mcast_endpoint = (" << mcast_addr_.to_string() << ","
-                             << std::to_string(mcast_port_) << ")");
+  /*TRACE("mcast_endpoint = (" << mcast_addr_.to_string() << ","
+                             << std::to_string(mcast_port_) << ")");*/
 }
 
 void PeerIMS::ReceiveTheHeaderSize() {
@@ -148,7 +155,7 @@ void PeerIMS::ReceiveTheHeaderSize() {
 
   header_size_in_chunks_ = ntohs(*(short *)(buffer.c_array()));
 
-  TRACE("header_size (in chunks) = " << std::to_string(header_size_in_chunks_));
+  /*TRACE("header_size (in chunks) = " << std::to_string(header_size_in_chunks_));*/
 }
 
 void PeerIMS::ReceiveTheChunkSize() {
@@ -157,7 +164,8 @@ void PeerIMS::ReceiveTheChunkSize() {
 
   chunk_size_ = ntohs(*(short *)(buffer.c_array()));
 
-  TRACE("chunk_size (bytes) = " << std::to_string(chunk_size_));
+  //TRACE("chunk_size (bytes) = " << std::to_string(chunk_size_));
+  LOGD("chunk_size (bytes) = %s" , std::to_string(chunk_size_));
 }
 
 void PeerIMS::ReceiveTheHeader() {
@@ -169,20 +177,25 @@ void PeerIMS::ReceiveTheHeader() {
 
   read(splitter_socket_, chunk, transfer_exactly(header_size_in_bytes), ec);
   if (ec) {
-    TRACE("Error: " << ec.message());
+    //TRACE("Error: " << ec.message());
+    LOGD("Error: %s", ec.message());
   }
 
   try {
     write(player_socket_, chunk);
   } catch (std::exception e) {
-    TRACE(e.what());
+    /*TRACE(e.what());
     TRACE("error sending data to the player");
-    TRACE("len(data) =" << std::to_string(chunk.size()));
+    TRACE("len(data) =" << std::to_string(chunk.size()));*/
+    LOGD("%s", e.what());
+    LOGD("error sending data to player");
+    LOGD("len(data) = %s", std::to_string(chunk.size()) );
     boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
   }
 
-  TRACE("Received " << std::to_string(header_size_in_bytes)
-                    << "bytes of header");
+  /*TRACE("Received " << std::to_string(header_size_in_bytes)
+                    << "bytes of header");*/
+  LOGD("Recieved %s bytes of header", std::to_string(header_size_in_bytes));
 }
 
 void PeerIMS::ReceiveTheBufferSize() {
@@ -191,7 +204,8 @@ void PeerIMS::ReceiveTheBufferSize() {
 
   buffer_size_ = ntohs(*(short *)(buffer.c_array()));
 
-  TRACE("buffer_size_ = " << std::to_string(buffer_size_));
+ /* TRACE("buffer_size_ = " << std::to_string(buffer_size_));*/
+  LOGD("buffer_size_ = %s",std::to_string(buffer_size_));
 }
 
 void PeerIMS::ListenToTheTeam() {
@@ -203,9 +217,10 @@ void PeerIMS::ListenToTheTeam() {
 
   team_socket_.set_option(ip::multicast::join_group(mcast_addr_));
 
-  TRACE("Listening to the mcast_channel = (" << mcast_addr_.to_string() << ","
+ /* TRACE("Listening to the mcast_channel = (" << mcast_addr_.to_string() << ","
                                              << std::to_string(mcast_port_)
-                                             << ")");
+                                             << ")");*/
+  LOGD("Listening to the mcast channel = ( %s , %s )", mcast_addr_.to_string(), std::to_string(mcast_port_) );
 }
 
 void PeerIMS::BufferData() {
@@ -242,10 +257,13 @@ void PeerIMS::BufferData() {
   // waiting for traveling the player, we wil fill only the half of the circular
   // queue.
 
-  TRACE("(" << team_socket_.local_endpoint().address().to_string() << ","
+  /*TRACE("(" << team_socket_.local_endpoint().address().to_string() << ","
             << std::to_string(team_socket_.local_endpoint().port()) << ")"
-            << "\b: buffering = 000.00%");
-  TraceSystem::Flush();
+            << "\b: buffering = 000.00%");*/
+  //TraceSystem::Flush();
+
+  LOGD("( %s, %s ) \b buffering = 000.00% \b", team_socket_.local_endpoint().address().to_string(),
+       std::to_string(team_socket_.local_endpoint().port()));
 
   // First chunk to be sent to the player.  The process_next_message() procedure
   // returns the chunk number if a packet has been received or -2 if a time-out
@@ -254,13 +272,21 @@ void PeerIMS::BufferData() {
   int chunk_number = ProcessNextMessage();
   while (chunk_number < 0) {
     chunk_number = ProcessNextMessage();
-    TRACE(std::to_string(chunk_number));
+    //TRACE(std::to_string(chunk_number));
+    LOGD("%s", std::to_string(chunk_number));
   }
   played_chunk_ = chunk_number;
-  TRACE("First chunk to play " << std::to_string(played_chunk_));
+
+  std::string trace_msg7 (std::to_string(played_chunk_));
+  std::string trace_msg8 (team_socket_.local_endpoint().address().to_string());
+  std::string trace_msg9 (std::to_string(team_socket_.local_endpoint().port()));
+  std::string trace_msg10 (std::to_string(100.0 / buffer_size_));
+  LOGD("First chunk to play %s ", trace_msg7);
+  LOGD("( %s , %s): \b buffering \b %s", trace_msg8,trace_msg9,trace_msg10);
+  /*TRACE("First chunk to play " << std::to_string(played_chunk_));
   TRACE("(" << team_socket_.local_endpoint().address().to_string() << ","
             << std::to_string(team_socket_.local_endpoint().port()) << ")"
-            << "\b: buffering (\b" << std::to_string(100.0 / buffer_size_));
+            << "\b: buffering (\b" << std::to_string(100.0 / buffer_size_));*/
   // TODO: Justify: .rjust(4)
 
   // Now, fill up to the half of the buffer.
@@ -276,19 +302,25 @@ void PeerIMS::BufferData() {
     } else {
       // pass
     }
-    TRACE("!");
-    TraceSystem::Flush();
-
+    //TRACE("!");
+    //TraceSystem::Flush();
+    LOGD("!");
     while (ProcessNextMessage() < 0)
       ;
   }
 
-  TRACE("");
-  TRACE("latency = " << std::to_string((clock() - start_time) /
-                                       (float)CLOCKS_PER_SEC)
-                     << " seconds");
-  TRACE("buffering done.");
-  TraceSystem::Flush();
+  std::string trace_msg6 (std::to_string((clock() - start_time) / (float)CLOCKS_PER_SEC));
+    //std::string trace_msg3 (std::to_string(message.size()));
+
+
+  //TRACE("");
+  //TRACE("latency = " << std::to_string((clock() - start_time) /
+    //                                   (float)CLOCKS_PER_SEC)
+    //                 << " seconds");
+  //TRACE("buffering done.");
+  //TraceSystem::Flush();
+  LOGD("latency = %s seconds" ,trace_msg6);
+  LOGD("buffering Done");
 }
 
 int PeerIMS::ProcessNextMessage() {
@@ -306,20 +338,30 @@ int PeerIMS::ProcessNextMessage() {
 }
 
 void PeerIMS::ReceiveTheNextMessage(std::vector<char> &message,
+
                                     ip::udp::endpoint &sender) {
-  TRACE("Waiting for a chunk at ("
+
+  std::string trace_msg4 (team_socket_.local_endpoint().address().to_string());
+  std::string trace_msg5 (std::to_string(team_socket_.local_endpoint().port()));
+  //std::string trace_msg3 (std::to_string(message.size()));
+  LOGD("Waiting for a chunk at (%s , %s)", trace_msg4,trace_msg5);
+  /*TRACE("Waiting for a chunk at ("
         << team_socket_.local_endpoint().address().to_string() << ","
-        << std::to_string(team_socket_.local_endpoint().port()) << ")");
+        << std::to_string(team_socket_.local_endpoint().port()) << ")");*/
 
   team_socket_.receive_from(buffer(message), sender);
   recvfrom_counter_++;
 
-  TRACE("Received a message from ("
+  std::string trace_msg1 (sender.address().to_string());
+  std::string trace_msg2 (std::to_string(sender.port()));
+  std::string trace_msg3 (std::to_string(message.size()));
+  LOGD("Received a message from %s , %s) of length %s", trace_msg1,trace_msg2,trace_msg3 );
+  /*TRACE("Received a message from ("
         << sender.address().to_string() << "," << std::to_string(sender.port())
-        << ") of length " << std::to_string(message.size()));
+        << ") of length " << std::to_string(message.size()));*/
 
   if (message.size() < 10) {
-    TRACE("Message content =" << std::string(message.data()));
+    LOGD("Message content = %s", std::string(message.data()));
   }
 }
 
@@ -365,12 +407,12 @@ void PeerIMS::KeepTheBufferFull() {
     for (int i = 0; buffer_size_; i++) {
       if (chunks_[i].received) {
         // TODO: Avoid line feed in LOG function
-        TRACE(std::to_string(i % 10));
+        /*TRACE(std::to_string(i % 10));*/
       } else {
-        TRACE(".");
+        /*TRACE(".");*/
       }
     }
-    TRACE("");
+    /*TRACE("");*/
   }
 
   // print (self.team_socket.getsockname(),)
@@ -393,7 +435,7 @@ int PeerIMS::FindNextChunk() {
 
   while (!chunks_[chunk_number % buffer_size_].received) {
     // sys.stdout.write(Color.cyan)
-    TRACE("lost chunk " << std::to_string(chunk_number));
+    /*TRACE("lost chunk " << std::to_string(chunk_number));*/
     // sys.stdout.write(Color.none)
 
     chunk_number = (chunk_number + 1) % Common::kMaxChunkNumber;
@@ -408,7 +450,7 @@ void PeerIMS::PlayChunk(int chunk) {
   try {
     write(player_socket_, buffer(chunks_[chunk % buffer_size_].data));
   } catch (std::exception e) {
-    TRACE("Player disconnected!");
+    /*TRACE("Player disconnected!");*/
     player_alive_ = false;
   }
 }

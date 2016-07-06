@@ -11,6 +11,14 @@
 //
 
 #include "monitor_dbs.h"
+#include <android/log.h>
+#define  LOG_TAG    "someTag"
+
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+#define  LOGW(...)  __android_log_print(ANDROID_LOG_WARN,LOG_TAG,__VA_ARGS__)
+#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+
 
 namespace p2psp {
 
@@ -18,7 +26,9 @@ MonitorDBS::MonitorDBS(){};
 
 MonitorDBS::~MonitorDBS(){};
 
-void MonitorDBS::Init() { TRACE("Initialized"); }
+void MonitorDBS::Init() { //TRACE("Initialized");
+    LOGD("Initialized");
+ }
 
 // def print_the_module_name(self):
 // {{{
@@ -35,7 +45,8 @@ void MonitorDBS::Complain(uint16_t chunk_number) {
 
   team_socket_.send_to(buffer(message), splitter_);
 
-  TRACE("lost chunk:" << std::to_string(chunk_number));
+  //TRACE("lost chunk:" << std::to_string(chunk_number));
+  LOGD("lost chunk: %s", std::to_string(chunk_number));
 };
 
 int MonitorDBS::FindNextChunk() {
