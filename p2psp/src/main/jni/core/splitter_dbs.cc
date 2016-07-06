@@ -38,7 +38,7 @@ void SplitterDBS::SendMagicFlags(
   char message[1];
 
   message[0] = magic_flags_;
-  peer_serve_socket->send(asio::buffer(message));
+  peer_serve_socket->send(asio::buffer(message)); // Parameter type Mismatch
   //LOG("Magic flags = " << bitset<8>(message[0]));
 }
 
@@ -48,7 +48,7 @@ void SplitterDBS::SendTheListSize(
 
   //TRACE("Sending the number of monitors " << monitor_number_);
   (*(uint16_t *)&message) = htons(monitor_number_);
-  peer_serve_socket->send(asio::buffer(message));
+  peer_serve_socket->send(asio::buffer(message)); // Parameter type mismatch
 
   /*TRACE("Sending a list of peers of size " << to_string(peer_list_.size()));
   (*(uint16_t *)&message) = htons(peer_list_.size());
@@ -69,7 +69,7 @@ void SplitterDBS::SendTheListOfPeers(
     inet_aton(it->address().to_string().c_str(), &addr);
     (*(in_addr *)&message) = addr;
     (*(uint16_t *)(message + 4)) = htons(it->port());
-    peer_serve_socket->send(asio::buffer(message));
+    peer_serve_socket->send(asio::buffer(message)); // Parameter type mismatch
 
     //TRACE(to_string(counter) << ", " << *it);
     counter++;
@@ -85,7 +85,7 @@ void SplitterDBS::SendThePeerEndpoint(
   inet_aton(peer_endpoint.address().to_string().c_str(), &addr);
   (*(in_addr *)&message) = addr;
   (*(uint16_t *)(message + 4)) = htons(peer_endpoint.port());
-  peer_serve_socket->send(asio::buffer(message));
+  peer_serve_socket->send(asio::buffer(message)); // Parameter type mismatch
 }
 
 void SplitterDBS::SendConfiguration(
