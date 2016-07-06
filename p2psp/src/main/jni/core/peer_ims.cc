@@ -165,7 +165,7 @@ void PeerIMS::ReceiveTheChunkSize() {
   chunk_size_ = ntohs(*(short *)(buffer.c_array()));
 
   //TRACE("chunk_size (bytes) = " << std::to_string(chunk_size_));
-  LOGD("chunk_size (bytes) = %s" , std::to_string(chunk_size_));
+  //LOGD("chunk_size (bytes) = %s" , std::to_string(chunk_size_));
 }
 
 void PeerIMS::ReceiveTheHeader() {
@@ -178,7 +178,7 @@ void PeerIMS::ReceiveTheHeader() {
   read(splitter_socket_, chunk, transfer_exactly(header_size_in_bytes), ec);
   if (ec) {
     //TRACE("Error: " << ec.message());
-    LOGD("Error: %s", ec.message());
+    //LOGD("Error: %s", ec.message());
   }
 
   try {
@@ -187,15 +187,15 @@ void PeerIMS::ReceiveTheHeader() {
     /*TRACE(e.what());
     TRACE("error sending data to the player");
     TRACE("len(data) =" << std::to_string(chunk.size()));*/
-    LOGD("%s", e.what());
+    /*LOGD("%s", e.what());
     LOGD("error sending data to player");
-    LOGD("len(data) = %s", std::to_string(chunk.size()) );
+    LOGD("len(data) = %s", std::to_string(chunk.size()) );*/
     boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
   }
 
   /*TRACE("Received " << std::to_string(header_size_in_bytes)
                     << "bytes of header");*/
-  LOGD("Recieved %s bytes of header", std::to_string(header_size_in_bytes));
+  //LOGD("Recieved %s bytes of header", std::to_string(header_size_in_bytes));
 }
 
 void PeerIMS::ReceiveTheBufferSize() {
@@ -205,7 +205,7 @@ void PeerIMS::ReceiveTheBufferSize() {
   buffer_size_ = ntohs(*(short *)(buffer.c_array()));
 
  /* TRACE("buffer_size_ = " << std::to_string(buffer_size_));*/
-  LOGD("buffer_size_ = %s",std::to_string(buffer_size_));
+  //LOGD("buffer_size_ = %s",std::to_string(buffer_size_));
 }
 
 void PeerIMS::ListenToTheTeam() {
@@ -220,7 +220,7 @@ void PeerIMS::ListenToTheTeam() {
  /* TRACE("Listening to the mcast_channel = (" << mcast_addr_.to_string() << ","
                                              << std::to_string(mcast_port_)
                                              << ")");*/
-  LOGD("Listening to the mcast channel = ( %s , %s )", mcast_addr_.to_string(), std::to_string(mcast_port_) );
+  //LOGD("Listening to the mcast channel = ( %s , %s )", mcast_addr_.to_string(), std::to_string(mcast_port_) );
 }
 
 void PeerIMS::BufferData() {
@@ -262,8 +262,7 @@ void PeerIMS::BufferData() {
             << "\b: buffering = 000.00%");*/
   //TraceSystem::Flush();
 
-  LOGD("( %s, %s ) \b buffering = 000.00% \b", team_socket_.local_endpoint().address().to_string(),
-       std::to_string(team_socket_.local_endpoint().port()));
+  //LOGD("( %s, %s ) \b buffering = 000.00% \b", team_socket_.local_endpoint().address().to_string(),std::to_string(team_socket_.local_endpoint().port()));
 
   // First chunk to be sent to the player.  The process_next_message() procedure
   // returns the chunk number if a packet has been received or -2 if a time-out
@@ -273,16 +272,16 @@ void PeerIMS::BufferData() {
   while (chunk_number < 0) {
     chunk_number = ProcessNextMessage();
     //TRACE(std::to_string(chunk_number));
-    LOGD("%s", std::to_string(chunk_number));
+    //LOGD(" %s ", std::to_string(chunk_number));
   }
   played_chunk_ = chunk_number;
 
-  std::string trace_msg7 (std::to_string(played_chunk_));
+  /*std::string trace_msg7 (std::to_string(played_chunk_));
   std::string trace_msg8 (team_socket_.local_endpoint().address().to_string());
   std::string trace_msg9 (std::to_string(team_socket_.local_endpoint().port()));
   std::string trace_msg10 (std::to_string(100.0 / buffer_size_));
-  LOGD("First chunk to play %s ", trace_msg7);
-  LOGD("( %s , %s): \b buffering \b %s", trace_msg8,trace_msg9,trace_msg10);
+  //LOGD("First chunk to play %s ", trace_msg7);
+  //LOGD("( %s , %s): \b buffering \b %s", trace_msg8,trace_msg9,trace_msg10);
   /*TRACE("First chunk to play " << std::to_string(played_chunk_));
   TRACE("(" << team_socket_.local_endpoint().address().to_string() << ","
             << std::to_string(team_socket_.local_endpoint().port()) << ")"
@@ -304,7 +303,7 @@ void PeerIMS::BufferData() {
     }
     //TRACE("!");
     //TraceSystem::Flush();
-    LOGD("!");
+    //LOGD("!");
     while (ProcessNextMessage() < 0)
       ;
   }
@@ -319,8 +318,8 @@ void PeerIMS::BufferData() {
     //                 << " seconds");
   //TRACE("buffering done.");
   //TraceSystem::Flush();
-  LOGD("latency = %s seconds" ,trace_msg6);
-  LOGD("buffering Done");
+  /*LOGD("latency = %s seconds" ,trace_msg6);
+  LOGD("buffering Done");*/
 }
 
 int PeerIMS::ProcessNextMessage() {
@@ -341,7 +340,7 @@ void PeerIMS::ReceiveTheNextMessage(std::vector<char> &message,
 
                                     ip::udp::endpoint &sender) {
 
-  std::string trace_msg4 (team_socket_.local_endpoint().address().to_string());
+  /*std::string trace_msg4 (team_socket_.local_endpoint().address().to_string());
   std::string trace_msg5 (std::to_string(team_socket_.local_endpoint().port()));
   //std::string trace_msg3 (std::to_string(message.size()));
   LOGD("Waiting for a chunk at (%s , %s)", trace_msg4,trace_msg5);
@@ -352,7 +351,7 @@ void PeerIMS::ReceiveTheNextMessage(std::vector<char> &message,
   team_socket_.receive_from(buffer(message), sender);
   recvfrom_counter_++;
 
-  std::string trace_msg1 (sender.address().to_string());
+  /*std::string trace_msg1 (sender.address().to_string());
   std::string trace_msg2 (std::to_string(sender.port()));
   std::string trace_msg3 (std::to_string(message.size()));
   LOGD("Received a message from %s , %s) of length %s", trace_msg1,trace_msg2,trace_msg3 );
@@ -361,7 +360,7 @@ void PeerIMS::ReceiveTheNextMessage(std::vector<char> &message,
         << ") of length " << std::to_string(message.size()));*/
 
   if (message.size() < 10) {
-    LOGD("Message content = %s", std::string(message.data()));
+   // LOGD("Message content = %s", std::string(message.data()));
   }
 }
 

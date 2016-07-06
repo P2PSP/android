@@ -22,7 +22,7 @@
 #include <boost/thread/thread.hpp>
 #include <arpa/inet.h>
 #include <ctime>
-#include "../util/trace.h"
+//#include "../util/trace.h"
 #include "peer_ims.h"
 
 using namespace boost::asio;

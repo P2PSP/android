@@ -14,7 +14,7 @@
 #define P2PSP_CORE_MONITOR_DBS_H
 
 #include "peer_dbs.h"
-#include "../util/trace.h"
+//#include "../util/trace.h"
 
 namespace p2psp {
 

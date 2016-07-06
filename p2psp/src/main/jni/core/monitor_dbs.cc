@@ -46,7 +46,7 @@ void MonitorDBS::Complain(uint16_t chunk_number) {
   team_socket_.send_to(buffer(message), splitter_);
 
   //TRACE("lost chunk:" << std::to_string(chunk_number));
-  LOGD("lost chunk: %s", std::to_string(chunk_number));
+  //LOGD("lost chunk: %s", std::to_string(chunk_number));
 };
 
 int MonitorDBS::FindNextChunk() {

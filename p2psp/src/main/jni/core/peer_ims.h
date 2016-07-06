@@ -22,7 +22,7 @@
 #include <string>
 #include <tuple>
 #include <vector>
-#include "../util/trace.h"
+//#include "../util/trace.h"
 #include "common.h"
 
 using namespace boost::asio;
