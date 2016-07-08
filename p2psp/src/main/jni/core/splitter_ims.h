@@ -151,7 +151,7 @@ class SplitterIMS {
 };
 }
 
-/*#endif  // defined P2PSP_CORE_SPLITTER_IMS_H_
-#ifdef __cplusplus
+#endif  // defined P2PSP_CORE_SPLITTER_IMS_H_
+/*#ifdef __cplusplus
 }
 #endif*/
