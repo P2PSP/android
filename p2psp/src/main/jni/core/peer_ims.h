@@ -9,9 +9,9 @@
 //
 //  IMS: Ip Multicasting Set of rules
 //
-#ifdef __cplusplus
+/*#ifdef __cplusplus
 extern "C" {
-#endif
+#endif*/
 #ifndef P2PSP_CORE_PEER_IMS_H
 #define P2PSP_CORE_PEER_IMS_H
 
@@ -188,7 +188,7 @@ class PeerIMS {
 };
 }
 
-#endif  // P2PSP_CORE_PEER_IMS_H
+/*#endif  // P2PSP_CORE_PEER_IMS_H
 #ifdef __cplusplus
 }
-#endif
+#endif*/

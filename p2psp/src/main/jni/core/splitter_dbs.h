@@ -9,9 +9,9 @@
 //
 //  DBS: Data Broadcasting Set of rules
 //
-#ifdef __cplusplus
+/*#ifdef __cplusplus
 extern "C" {
-#endif
+#endif*/
 #ifndef P2PSP_CORE_SPLITTER_DBS_H_
 #define P2PSP_CORE_SPLITTER_DBS_H_
 
@@ -106,7 +106,7 @@ class SplitterDBS : public SplitterIMS {
 };
 }
 
-#endif  // defined P2PSP_CORE_SPLITTER_DBS_H_
+/*#endif  // defined P2PSP_CORE_SPLITTER_DBS_H_
 #ifdef __cplusplus
 }
-#endif
+#endif*/
