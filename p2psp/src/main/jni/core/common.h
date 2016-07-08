@@ -7,7 +7,9 @@
 //  Copyright (C) 2016, the P2PSP team.
 //  http://www.p2psp.org
 //
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 #ifndef P2PSP_CORE_COMMON_H
 #define P2PSP_CORE_COMMON_H
 
@@ -57,3 +59,6 @@ class Common {
 }
 
 #endif  // P2PSP_CORE_COMMON_H
+#ifdef __cplusplus
+}
+#endif

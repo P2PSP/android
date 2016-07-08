@@ -9,6 +9,9 @@
 //
 //  DBS: Data Broadcasting Set of rules
 //
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef P2PSP_CORE_PEER_DBS_H
 #define P2PSP_CORE_PEER_DBS_H
@@ -81,3 +84,6 @@ class PeerDBS : public PeerIMS {
 }
 
 #endif  // P2PSP_CORE_PEER_DBS_H
+#ifdef __cplusplus
+}
+#endif

@@ -9,7 +9,9 @@
 //
 //  IMS: IP Multicast Set of rules.Boost header files for compilation support.
 //
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 #ifndef P2PSP_CORE_SPLITTER_IMS_H_
 #define P2PSP_CORE_SPLITTER_IMS_H_
 
@@ -150,3 +152,6 @@ class SplitterIMS {
 }
 
 #endif  // defined P2PSP_CORE_SPLITTER_IMS_H_
+#ifdef __cplusplus
+}
+#endif
