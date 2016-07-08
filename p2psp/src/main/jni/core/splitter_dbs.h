@@ -106,7 +106,7 @@ class SplitterDBS : public SplitterIMS {
 };
 }
 
-/*#endif  // defined P2PSP_CORE_SPLITTER_DBS_H_
-#ifdef __cplusplus
+#endif  // defined P2PSP_CORE_SPLITTER_DBS_H_
+/*#ifdef __cplusplus
 }
 #endif*/

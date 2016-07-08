@@ -30,7 +30,7 @@ class MonitorDBS : public PeerDBS {
 };
 }
 
-/*#endif  // P2PSP_CORE_MONITOR_DBS_H
-#ifdef __cplusplus
+#endif  // P2PSP_CORE_MONITOR_DBS_H
+/*#ifdef __cplusplus
 }
 #endif*/

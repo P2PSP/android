@@ -58,7 +58,7 @@ class Common {
 };
 }
 
-/*#endif  // P2PSP_CORE_COMMON_H
-#ifdef __cplusplus
+#endif  // P2PSP_CORE_COMMON_H
+/*#ifdef __cplusplus
 }
 #endif*/

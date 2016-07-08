@@ -83,7 +83,7 @@ class PeerDBS : public PeerIMS {
 };
 }
 
-/*#endif  // P2PSP_CORE_PEER_DBS_H
-#ifdef __cplusplus
+#endif  // P2PSP_CORE_PEER_DBS_H
+/*#ifdef __cplusplus
 }
 #endif*/
