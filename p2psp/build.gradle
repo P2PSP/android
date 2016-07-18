@@ -231,12 +231,13 @@ model{
         ndk{
             moduleName = 'p2psp'
             stl = "c++_shared"
-           // ldLibs.addAll('-L'+ file("/home/cran-cg/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi").absolutePath)
+            ldLibs.addAll(file("/home/cran-cg/Android/Sdk/ndk-bundle/platforms/android-24/arch-arm/usr/lib/libstdc++.so").absolutePath)
             ldLibs.addAll(['android', 'log','atomic'])/*"${NDK_ROOT}/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi",'gnustl_static'*/
             toolchain = "clang"
             cppFlags.add("-std=c++11")
+            cppFlags.add("-libstdc++")
             cppFlags.add('-frtti')
-            cppFlags.add('-fexceptions')
+            cppFlags.addAll('-fexceptions')//,'-stl=stlport'
             cppFlags.addAll('-I' + file("/home/cran-cg/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libcxx/include").absolutePath ,'-DANDROID', ' -DANDROID_NDK', '-DAWS_CUSTOM_MEMORY_MANAGEMENT', '-fPIC', '-fexceptions')
             //cppFlags.add("-I${lib_distribution_root}/boost/include".toString())
             //cppFlags.add("-I${file("src/main/jni/inc")}".toString())
