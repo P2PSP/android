@@ -234,9 +234,9 @@ model {
             platformVersion = 21
             moduleName = 'hello-libs'
             toolchain = 'clang'
-            stl = 'gnustl_static'
-            cppFlags.addAll(['-std=c++11'])
-            ldLibs.addAll(['android', 'log'])
+            stl = 'c++_shared'
+            ldLibs.addAll(['android', 'log','atomic'])
+            cppFlags.addAll(["-fexceptions","-std=c++11"])
             abiFilters.addAll(['armeabi', 'armeabi-v7a', 'x86'])
         }
         sources {
