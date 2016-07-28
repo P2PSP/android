@@ -67,7 +67,9 @@ PeerIMS::~PeerIMS() {}
 void PeerIMS::Init(){};
 
 void PeerIMS::WaitForThePlayer() {
-  std::string port = std::to_string(player_port_);
+  //std::string port = std::to_string(player_port_); / port was not being used anywhere and was causing errors during build,
+  // error: no member named 'to_string' in namespace 'std'std::string port = std::to_string(player_port_);
+
   ip::tcp::endpoint endpoint(ip::tcp::v4(), player_port_);
 
   acceptor_.open(endpoint.protocol());
@@ -307,8 +309,11 @@ void PeerIMS::BufferData() {
     while (ProcessNextMessage() < 0)
       ;
   }
-
+  /**
+   *  error: no member named 'to_string' in namespace 'std'
   std::string trace_msg6 (std::to_string((clock() - start_time) / (float)CLOCKS_PER_SEC));
+   */
+  //std::string trace_msg6 (std::to_string((clock() - start_time) / (float)CLOCKS_PER_SEC));
     //std::string trace_msg3 (std::to_string(message.size()));
 
 
