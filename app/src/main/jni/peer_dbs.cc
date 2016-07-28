@@ -166,10 +166,14 @@ int PeerDBS::ProcessMessage(const std::vector<char> &message,
                 << std::to_string(sender.port()) << ")");*/
       // No aqui. Tal vez, DIS
 
+
+      /**
+       * Commented the LogMessage part here. 28 July 2016
+       */
       if (kLogging) {
-        LogMessage("buffer correctnes " +
-                   std::to_string(CalcBufferCorrectness()));
-        LogMessage("buffer filling " + std::to_string(CalcBufferFilling()));
+        /*LogMessage("buffer correctnes " +
+                   std::to_string(CalcBufferCorrectness()));*/
+        //LogMessage("buffer filling " + std::to_string(CalcBufferFilling()));
       }
 
       while (receive_and_feed_counter_ < (int)peer_list_.size() &&
