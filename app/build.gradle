@@ -232,7 +232,7 @@ model {
         }
         ndk {
             platformVersion = 21
-            moduleName = 'hello-libs'
+            moduleName = 'p2psp'
             toolchain = 'clang'
             stl = 'gnustl_shared'
             cppFlags.addAll(['-std=c++11', '-Wall',
