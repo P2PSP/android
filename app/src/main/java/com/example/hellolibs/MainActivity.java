@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TextView tv = new TextView(this);
-        tv.setText( stringFromJNI() );
+        tv.setText( initMethod() );
         setContentView(tv);
     }
-    public native String  stringFromJNI();
+    public native String  initMethod();
     static {
-        System.loadLibrary("hello-libs");
+        System.loadLibrary("p2psp");
     }
 
 }
