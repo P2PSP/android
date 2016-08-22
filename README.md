@@ -18,6 +18,20 @@ Getting Started
 
 This project uses the new [Gradle Experimental Android plugin](http://tools.android.com/tech-docs/new-build-system/gradle-experimental) with external lib support.
 
+Android Project Configuration
+-----------------------------------
+ 
+To compile the Android project we need to link several libraries such as **Boost**, **LibVLC**  to the jni.
+
+#### Boost
+
+*   [https://github.com/emileb/Boost-for-Android-Prebuilt/tree/master/boost_1_53_0](https://github.com/emileb/Boost-for-Android-Prebuilt/tree/master/boost_1_53_0)
+*    Boost static libraries specific to three ABI's namely `armeabi, armeabi-v7a, x86`.
+
+#### LibVLC
+*   We can build the LibVLC for Android by following this [AndroidCompile](https://wiki.videolan.org/AndroidCompile/) and then add it to the project.
+
+
 Gradle Build Configuration
 -----------------------------------
  
