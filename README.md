@@ -1,7 +1,7 @@
 Android application | P2PSP
 ========================
 
-[![Join the chat at https://gitter.im/P2PSP/Android-player](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/P2PSPAndroid-player?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/P2PSP/Android-player](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/P2PSP/Android-player?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This project is aimed to implement a P2PSP client as an Android application. This project is aimed to create a peer implementation for Android devices.
 
